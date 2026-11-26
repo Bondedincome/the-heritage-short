@@ -1,0 +1,90 @@
+{
+  "aspect": "horizontal",
+  "size": [
+    1280,
+    720
+  ],
+  "duration": 80.1,
+  "music": "placeholder",
+  "audio": "outputs/build/audio/mix-0f2f3b9e5876.wav",
+  "shots": [
+    {
+      "shot": "s01",
+      "start": 0.0,
+      "duration": 7.5,
+      "engine": "kenburns",
+      "segment": "outputs/build/segments/horizontal/s01-067b8b2498a6.mp4"
+    },
+    {
+      "shot": "s02",
+      "start": 7.5,
+      "duration": 5.5,
+      "engine": "kenburns",
+      "segment": "outputs/build/segments/horizontal/s02-05ce775782cb.mp4"
+    },
+    {
+      "shot": "s03",
+      "start": 13.0,
+      "duration": 7.2,
+      "engine": "kenburns",
+      "segment": "outputs/build/segments/horizontal/s03-3c238d23140a.mp4"
+    },
+    {
+      "shot": "s04",
+      "start": 20.2,
+      "duration": 5.6,
+      "engine": "kenburns",
+      "segment": "outputs/build/segments/horizontal/s04-0ce653b55d3e.mp4"
+    },
+    {
+      "shot": "s05",
+      "start": 25.8,
+      "duration": 7.2,
+      "engine": "kenburns",
+      "segment": "outputs/build/segments/horizontal/s05-5af5989dc993.mp4"
+    },
+    {
+      "shot": "s06",
+      "start": 33.0,
+      "duration": 4.5,
+      "engine": "kenburns",
+      "segment": "outputs/build/segments/horizontal/s06-1d8821502010.mp4"
+    },
+    {
+      "shot": "s07",
+      "start": 37.5,
+      "duration": 8.8,
+      "engine": "kenburns",
+      "segment": "outputs/build/segments/horizontal/s07-ea075265875d.mp4"
+    },
+    {
+      "shot": "s08",
+      "start": 46.3,
+      "duration": 7.8,
+      "engine": "kenburns",
+      "segment": "outputs/build/segments/horizontal/s08-91abb8d9eeb8.mp4"
+    },
+    {
+      "shot": "s09",
+      "start": 54.1,
+      "duration": 8.3,
+      "engine": "kenburns",
+      "segment": "outputs/build/segments/horizontal/s09-f18b8fec0cb0.mp4"
+    },
+    {
+      "shot": "s10",
+      "start": 62.4,
+      "duration": 5.1,
+      "engine": "kenburns",
+      "segment": "outputs/build/segments/horizontal/s10-562152c6f658.mp4"
+    },
+    {
+      "shot": "s11",
+      "start": 67.5,
+      "duration": 7.6,
+      "engine": "kenburns",
+      "segment": "outputs/build/segments/horizontal/s11-5e661bcf6ea4.mp4"
+    }
+  ],
+  "subtitles": 15
+}

@@ -1,0 +1,18 @@
+.env
+*.env
+!.env.example
+__pycache__/
+*.pyc
+.venv/
+venv/
+kaggle.json
+# Rebuildable intermediates; generated media in outputs/ is kept so a clean clone rebuilds from cache
+outputs/build/
+outputs/kaggle/
+outputs/smoke/
+outputs/.digests.json
+storyboard.draft.json
+# Rebuilt locally from committed keyframes/narration with no model calls (keeps the repo small):
+outputs/final/*.mp4
+outputs/shots/kenburns/
+outputs/music/placeholder-*.wav

@@ -1,0 +1,404 @@
+{
+  "$schema": "./schema/storyboard.schema.json",
+  "title": "Lion at Home",
+  "language": {
+    "code": "am",
+    "name": "Amharic"
+  },
+  "audience": "My family (mom, uncle, cousins in Addis and Gonder) in Telegram/WhatsApp groups on phones; secondarily friends and my cohort on TikTok/Instagram who don't speak Amharic",
+  "intent": "Laugh at Babeye's punchline, then feel the warmth under it: Gonder was the one place I felt at home enough to be the lion",
+  "style": {
+    "visual": "Warm hand-painted storybook illustration, soft gouache texture, gentle paper grain, warm golden light, earthy palette with Ethiopian tibeb pattern accents, expressive comic faces, children's picture book",
+    "negative": "photorealistic, blurry, distorted face, extra fingers, deformed hands, text, letters, watermark, subtitles, flicker, jitter, low quality, oversaturated, blood, injury"
+  },
+  "characters": [
+    {
+      "id": "doni_kid",
+      "name": "Doni as a boy",
+      "description": "a skinny six-year-old Ethiopian boy, light-brown skin, big round curly black afro, mischievous wide grin, navy blue polo shirt with a white striped collar, khaki shorts",
+      "real_person": true,
+      "consent_ref": "consent-doni"
+    },
+    {
+      "id": "doni",
+      "name": "Doni today",
+      "description": "a slim Ethiopian young man in his early twenties, light-brown skin, tall curly black afro, thin moustache, wry half-smile, navy polo shirt with a white striped collar",
+      "real_person": true,
+      "consent_ref": "consent-doni"
+    },
+    {
+      "id": "babeye",
+      "name": "Babeye, the grandfather",
+      "description": "a very old, thin Ethiopian grandfather, short white hair, white stubble, deep wrinkles, kind narrow eyes, wrapped in a white cotton gabi shawl over a white tunic",
+      "real_person": true,
+      "consent_ref": "consent-babeye"
+    },
+    {
+      "id": "hule",
+      "name": "Hule, the mother",
+      "description": "an Ethiopian mother in her thirties, warm smile, dark hair tied back, white habesha kemis dress with a bright pink, green and yellow tibeb embroidered border, gold pendant necklace",
+      "real_person": true,
+      "consent_ref": "consent-hule"
+    },
+    {
+      "id": "mehari",
+      "name": "Mehari, the uncle",
+      "description": "a playful Ethiopian uncle in his thirties, slim, short black hair, expressive raised eyebrows, rust-brown polo shirt with navy trim on the sleeves, beige trousers",
+      "real_person": true,
+      "consent_ref": "consent-mehari"
+    }
+  ],
+  "models": {
+    "text": "auto",
+    "image": "@cf/black-forest-labs/flux-2-klein-4b",
+    "image_steps": 4,
+    "image_width": 1024,
+    "image_height": 1024,
+    "video": {
+      "width": 704,
+      "height": 704,
+      "num_frames": 121,
+      "fps": 24,
+      "steps": 30,
+      "guidance": 5.0,
+      "seed": 42
+    }
+  },
+  "voice": {
+    "model": "gemini-3.8-flash-lite-tts",
+    "voice_name": "Puck",
+    "direction": ""
+  },
+  "music": {
+    "prompt": "playful Ethiopian krar and masenqo, light kebero hand drum, warm, mischievous then tender, acoustic, 90 bpm",
+    "lyrics": "[instrumental]",
+    "candidates": 3,
+    "seeds": [
+      11,
+      22,
+      33
+    ],
+    "chosen": null,
+    "volume_db": -8,
+    "duck_ratio": 8
+  },
+  "format": {
+    "fps": 24,
+    "horizontal": [
+      1280,
+      720
+    ],
+    "vertical": [
+      720,
+      1280
+    ],
+    "loudness_lufs": -14
+  },
+  "end_card": {
+    "lines": [
+      "Made with AI",
+      "Images: FLUX.2 klein (Cloudflare Workers AI) · Voice: Gemini TTS · Edit: FFmpeg, driven by a storyboard in code",
+      "A true family story, told with the consent of the people in it"
+    ],
+    "duration": 5
+  },
+  "shots": [
+    {
+      "id": "s01",
+      "duration": 7.5,
+      "reason": "Set up the nickname, the film's title and payoff, and introduce the uncle who coined it.",
+      "characters": [
+        "mehari",
+        "doni_kid"
+      ],
+      "keyframe": {
+        "prompt": "In a cosy living room, the smiling uncle points playfully at the small boy who stands on the sofa pretending to be a lion, cushions scattered, cheerful",
+        "seed": 101
+      },
+      "motion": {
+        "engine": "kenburns",
+        "prompt": "the boy roars and the uncle laughs",
+        "kenburns": {
+          "zoom_from": 1.0,
+          "zoom_to": 1.12
+        }
+      },
+      "narration": {
+        "text": "አጎቴ መሐሪ ለኔ የሰጠኝ ቅጽል ስም ነበረው፦ «የቤት አንበሳ፣ የዱር ጨዋ»።",
+        "english": "My uncle Mehari had a nickname for me: \"a lion at home, a gentleman outside.\"",
+        "offset": 0.5,
+        "machine_translated": true
+      },
+      "music_cue": "playful krar figure"
+    },
+    {
+      "id": "s02",
+      "duration": 5.5,
+      "reason": "Show the 'gentleman outside' half, so the contrast is visible.",
+      "characters": [
+        "doni_kid"
+      ],
+      "keyframe": {
+        "prompt": "In a bright school classroom, the small boy sits perfectly upright at a wooden desk, hands folded, angelic polite smile, other children blurred around him",
+        "seed": 102
+      },
+      "motion": {
+        "engine": "kenburns",
+        "kenburns": {
+          "zoom_from": 1.12,
+          "zoom_to": 1.0
+        }
+      },
+      "narration": {
+        "text": "በትምህርት ቤት ሳለሁ ከሁሉ በላይ ጸጥተኛና ጨዋ ልጅ ነበርኩ።",
+        "english": "At school I was the quietest, most polite kid you ever met.",
+        "offset": 0.4,
+        "machine_translated": true
+      },
+      "music_cue": "music holds a polite single note"
+    },
+    {
+      "id": "s03",
+      "duration": 7.2,
+      "reason": "Name the place that felt most like home, and the journey there.",
+      "characters": [
+        "doni_kid",
+        "hule"
+      ],
+      "keyframe": {
+        "prompt": "Inside a small airplane, the boy presses his face to the window, his mother beside him smiling, green Ethiopian highlands and clouds below",
+        "seed": 103
+      },
+      "motion": {
+        "engine": "kenburns",
+        "kenburns": {
+          "x_from": 0.4,
+          "x_to": 0.6
+        }
+      },
+      "narration": {
+        "text": "ነገር ግን እንደ ቤቴ የሚሰማኝ አያቴ ቤት ጎንደር ነበረ፤ ከአዲስ አበባ በሰማይ እንበር ነበር።",
+        "english": "But the place that felt most like home was my grandparents' house in Gonder. We flew there from Addis.",
+        "offset": 0.4,
+        "machine_translated": true
+      },
+      "music_cue": "melody opens up, travelling"
+    },
+    {
+      "id": "s04",
+      "duration": 5.6,
+      "reason": "Establish Gonder and the grandparents' house: the stage for the story.",
+      "characters": [],
+      "keyframe": {
+        "prompt": "A warm family house with a green gate and a courtyard in Gonder, bougainvillea on the wall, the old stone castles of Gonder on the hill behind, afternoon light",
+        "seed": 104
+      },
+      "motion": {
+        "engine": "kenburns",
+        "kenburns": {
+          "zoom_from": 1.15,
+          "zoom_to": 1.0
+        }
+      },
+      "narration": {
+        "text": "እና በዚያ ቤት ውስጥ፣ አንበሳው ነቃ።",
+        "english": "And in that house, the lion woke up.",
+        "offset": 0.8,
+        "machine_translated": true
+      },
+      "music_cue": "drum enters, mischievous"
+    },
+    {
+      "id": "s05",
+      "duration": 7.2,
+      "reason": "The ruckus: make the havoc concrete and funny.",
+      "characters": [
+        "doni_kid"
+      ],
+      "keyframe": {
+        "prompt": "The boy runs through the living room yelling with joy, a drinking glass falling off a table mid-air, a cracked window behind him, a cat jumping out of the way",
+        "seed": 105
+      },
+      "motion": {
+        "engine": "kenburns",
+        "kenburns": {
+          "x_from": 0.3,
+          "x_to": 0.7,
+          "zoom_from": 1.15,
+          "zoom_to": 1.15
+        }
+      },
+      "narration": {
+        "text": "አንድ ጊዜ ስሄድ መነጽር ሰብሬ፣ መስኮት ሰንጥቄ፣ ቤቱን በጩኸት ሞላሁት። እውነተኛ ተንኮለኛ።",
+        "english": "One visit I broke glasses, cracked a window, and yelled through the whole house. A true menace.",
+        "offset": 0.3,
+        "machine_translated": true
+      },
+      "music_cue": "fast, chaotic, playful"
+    },
+    {
+      "id": "s06",
+      "duration": 4.5,
+      "reason": "Introduce Babeye at the moment his patience runs out.",
+      "characters": [
+        "babeye"
+      ],
+      "keyframe": {
+        "prompt": "The grandfather stands up from a patterned sofa with a stern, comic expression, one eyebrow raised",
+        "seed": 106
+      },
+      "motion": {
+        "engine": "kenburns",
+        "kenburns": {
+          "zoom_from": 1.0,
+          "zoom_to": 1.2,
+          "y_from": 0.5,
+          "y_to": 0.35
+        }
+      },
+      "narration": {
+        "text": "አያቴ ባቤዬ፣ በመጨረሻ ታገሠው።",
+        "english": "My grandfather, Babeye, had finally had enough.",
+        "offset": 0.5,
+        "machine_translated": true
+      },
+      "music_cue": "music stops abruptly"
+    },
+    {
+      "id": "s07",
+      "duration": 8.8,
+      "reason": "Explain Habesha discipline so non-family viewers get the joke.",
+      "characters": [
+        "babeye"
+      ],
+      "keyframe": {
+        "prompt": "Still life on a tiled floor: a plastic slipper, a leather belt, and the grandfather's hand with two fingers ready to pinch, comic storybook framing",
+        "seed": 107
+      },
+      "motion": {
+        "engine": "kenburns",
+        "kenburns": {
+          "x_from": 0.3,
+          "x_to": 0.65
+        }
+      },
+      "narration": {
+        "text": "በሀበሻ ቤቶች፣ ቅጣት ጫማ፣ ቀበቶ፣ ወይም ቆንጥጦ ነው። የባቤዬ ምርጥ፡ በነርቭ ላይ መቆንጠጥ።",
+        "english": "In Habesha homes, discipline is a slipper, a belt, or a pinch. Babeye's favourite: a pinch on the thigh.",
+        "offset": 0.3,
+        "machine_translated": true
+      },
+      "music_cue": "single comic pluck"
+    },
+    {
+      "id": "s08",
+      "duration": 7.8,
+      "reason": "The turn: a spoiled boy meets discipline for the first time and reacts on instinct.",
+      "characters": [
+        "doni_kid",
+        "babeye"
+      ],
+      "keyframe": {
+        "prompt": "Comic storybook moment: the small boy, eyes squeezed shut, throws a tiny punch into his grandfather's belly; the grandfather's eyes go wide with surprise, comic motion lines",
+        "seed": 108
+      },
+      "motion": {
+        "engine": "kenburns",
+        "kenburns": {
+          "zoom_from": 1.0,
+          "zoom_to": 1.25
+        }
+      },
+      "narration": {
+        "text": "ወላጆቼ ፈጽሞ ቀጥበውኝ አያውቁም። አሳመመኝ፣ ደነገጥኩ፣ እና በቀጥታ ሆዱ ላይ መታሁት።",
+        "english": "My parents had never punished me. It hurt, I panicked, and I punched him right in the stomach.",
+        "offset": 0.3,
+        "machine_translated": true
+      },
+      "music_cue": "silence, then a thump"
+    },
+    {
+      "id": "s09",
+      "duration": 8.3,
+      "reason": "The punchline: Babeye's line to my mother, the sentence the film exists for.",
+      "characters": [
+        "babeye",
+        "hule"
+      ],
+      "keyframe": {
+        "prompt": "The grandfather, catching his breath with a hand on his belly, turns to the mother in the doorway with a proud astonished grin; the mother covers her mouth, laughing",
+        "seed": 109
+      },
+      "motion": {
+        "engine": "kenburns",
+        "kenburns": {
+          "zoom_from": 1.1,
+          "zoom_to": 1.0
+        }
+      },
+      "narration": {
+        "text": "ትንፋሹን ሰብስቦ ወደ እናቴ ዞረና፦ «ፓፓ! ሁልዬ፣ ወንድ ወልደሻል!» አላት።",
+        "english": "He gasped, turned to my mom and said: \"Wow! Hule, you've given birth to a real man!\"",
+        "offset": 0.8,
+        "machine_translated": true
+      },
+      "music_cue": "beat of silence, then warm theme returns"
+    },
+    {
+      "id": "s10",
+      "duration": 5.1,
+      "reason": "Bridge to today: the story lives on as family ritual.",
+      "characters": [
+        "doni",
+        "hule",
+        "mehari",
+        "babeye"
+      ],
+      "keyframe": {
+        "prompt": "Today, the whole family around a dinner table with injera and coffee, everyone laughing, the young man in the middle covering his face in embarrassment",
+        "seed": 110
+      },
+      "motion": {
+        "engine": "kenburns",
+        "kenburns": {
+          "zoom_from": 1.0,
+          "zoom_to": 1.1
+        }
+      },
+      "narration": {
+        "text": "አሁን ይህ በየቤተሰቡ እራት ላይ የሚወራ ታሪክ ሆኗል።",
+        "english": "Now it's the story told at every family dinner.",
+        "offset": 0.5,
+        "machine_translated": true
+      },
+      "music_cue": "full, warm"
+    },
+    {
+      "id": "s11",
+      "duration": 7.6,
+      "reason": "Pay off the nickname with its real meaning: home is where you're free to be yourself.",
+      "characters": [
+        "doni",
+        "babeye"
+      ],
+      "keyframe": {
+        "prompt": "The young man and his very old grandfather sitting side by side on a patterned sofa, laughing together, warm evening light, balloons in the background",
+        "seed": 111
+      },
+      "motion": {
+        "engine": "kenburns",
+        "kenburns": {
+          "zoom_from": 1.12,
+          "zoom_to": 1.0
+        }
+      },
+      "narration": {
+        "text": "በቤት ውስጥ አንበሳ። ምክንያቱም ቤት አንበሳ ለመሆን ነፃነት የነበረኝ ብቸኛ ቦታ ስለነበር ነው።",
+        "english": "A lion at home. Because home was the one place I was free to be one.",
+        "offset": 0.6,
+        "machine_translated": true
+      },
+      "music_cue": "final phrase, resolve"
+    }
+  ]
+}

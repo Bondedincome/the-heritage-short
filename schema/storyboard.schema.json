@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/heritage-short/storyboard.schema.json",
+  "title": "Heritage Short storyboard",
+  "description": "The contract between every pipeline stage. Each stage reads this file and writes only to outputs/.",
+  "type": "object",
+  "required": ["title", "language", "audience", "intent", "style", "characters", "voice", "music", "format", "end_card", "shots"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "title": { "type": "string", "minLength": 1 },
+    "language": {
+      "type": "object",
+      "required": ["code", "name"],
+      "additionalProperties": false,
+      "properties": {
+        "code": { "type": "string", "description": "BCP-47 code of the narration language, e.g. am, om, ti, so, en" },
+        "name": { "type": "string", "description": "Human name, e.g. Amharic" }
+      }
+    },
+    "audience": { "type": "string", "minLength": 1, "description": "Who will watch, and where" },
+    "intent": { "type": "string", "minLength": 1, "description": "What the audience should feel or understand at the end" },
+    "style": {
+      "type": "object",
+      "required": ["visual"],
+      "additionalProperties": false,
+      "properties": {
+        "visual": { "type": "string", "description": "Style text prepended to every image prompt (describe qualities, not living artists)" },
+        "negative": { "type": "string", "description": "Things to avoid; used as the Wan negative prompt" }
+      }
+    },
+    "characters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "description", "real_person"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+          "name": { "type": "string" },
+          "description": { "type": "string", "description": "Fixed visual description, inserted verbatim into every prompt that features this character" },
+          "real_person": { "type": "boolean", "description": "True if this depicts a real person; requires consent_ref" },
+          "consent_ref": { "type": "string", "description": "Anchor/section in ETHICS.md where consent is recorded" },
+          "reference_image": { "type": "string", "description": "Optional path to a user-supplied reference image (only with consent)" }
+        }
+      }
+    },
+    "models": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": { "type": "string", "description": "Gemini text model id, or 'auto'" },
+        "image": { "type": "string", "description": "Cloudflare Workers AI model id, e.g. @cf/black-forest-labs/flux-1-schnell" },
+        "image_steps": { "type": "integer", "minimum": 1, "maximum": 50 },
+        "image_width": { "type": "integer", "minimum": 256, "maximum": 2048 },
+        "image_height": { "type": "integer", "minimum": 256, "maximum": 2048 },
+        "video": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "model": { "type": "string" },
+            "width": { "type": "integer", "multipleOf": 32 },
+            "height": { "type": "integer", "multipleOf": 32 },
+            "num_frames": { "type": "integer", "minimum": 5 },
+            "fps": { "type": "integer", "minimum": 8, "maximum": 30 },
+            "steps": { "type": "integer", "minimum": 1 },
+            "guidance": { "type": "number" },
+            "seed": { "type": "integer" }
+          }
+        }
+      }
+    },
+    "voice": {
+      "type": "object",
+      "required": ["model", "voice_name"],
+      "additionalProperties": false,
+      "properties": {
+        "model": { "type": "string", "description": "Gemini TTS model id, or 'auto' to pick the newest flash TTS model" },
+        "voice_name": { "type": "string", "description": "Prebuilt voice, e.g. Kore, Charon, Puck" },
+        "direction": { "type": "string", "description": "Delivery instruction prepended to every line" },
+        "consent_ref": { "type": "string", "description": "Required if the voice imitates a real person" }
+      }
+    },
+    "music": {
+      "type": "object",
+      "required": ["prompt"],
+      "additionalProperties": false,
+      "properties": {
+        "model": { "type": "string" },
+        "prompt": { "type": "string", "description": "Style tags / description for ACE-Step" },
+        "lyrics": { "type": "string", "description": "Lyrics, or '[instrumental]'" },
+        "candidates": { "type": "integer", "minimum": 1, "maximum": 8 },
+        "seeds": { "type": "array", "items": { "type": "integer" } },
+        "chosen": { "type": ["string", "null"], "description": "Candidate id chosen for the film, e.g. m2; null uses the placeholder" },
+        "why_chosen": { "type": "string" },
+        "volume_db": { "type": "number", "description": "Music bed gain before ducking" },
+        "duck_ratio": { "type": "number", "minimum": 1, "maximum": 20 }
+      }
+    },
+    "format": {
+      "type": "object",
+      "required": ["fps", "horizontal", "vertical"],
+      "additionalProperties": false,
+      "properties": {
+        "fps": { "type": "integer", "minimum": 12, "maximum": 60 },
+        "horizontal": { "$ref": "#/$defs/size" },
+        "vertical": { "$ref": "#/$defs/size" },
+        "loudness_lufs": { "type": "number", "maximum": -5, "minimum": -30 },
+        "subtitle_font": { "type": "string", "description": "Optional path to a .ttf for subtitles" }
+      }
+    },
+    "end_card": {
+      "type": "object",
+      "required": ["lines", "duration"],
+      "additionalProperties": false,
+      "properties": {
+        "lines": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "duration": { "type": "number", "minimum": 2, "maximum": 10 },
+        "font": { "type": "string", "description": "Optional .ttf path (use an Ethiopic font such as Nyala or Noto Sans Ethiopic for Ge'ez script)" }
+      }
+    },
+    "shots": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 20,
+      "items": { "$ref": "#/$defs/shot" }
+    }
+  },
+  "$defs": {
+    "size": {
+      "type": "array",
+      "prefixItems": [{ "type": "integer", "minimum": 64 }, { "type": "integer", "minimum": 64 }],
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "unit": { "type": "number", "minimum": 0, "maximum": 1 },
+    "shot": {
+      "type": "object",
+      "required": ["id", "duration", "reason", "keyframe", "motion"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^s[0-9]{2}$" },
+        "duration": { "type": "number", "minimum": 2, "maximum": 15 },
+        "reason": { "type": "string", "minLength": 3, "description": "Why this shot exists, in one sentence" },
+        "characters": { "type": "array", "items": { "type": "string" } },
+        "keyframe": {
+          "type": "object",
+          "required": ["prompt"],
+          "additionalProperties": false,
+          "properties": {
+            "prompt": { "type": "string", "minLength": 3 },
+            "seed": { "type": "integer" }
+          }
+        },
+        "motion": {
+          "type": "object",
+          "required": ["engine"],
+          "additionalProperties": false,
+          "properties": {
+            "engine": { "enum": ["wan", "kenburns"], "description": "wan = Wan 2.2 clip if one is cached, else falls back to kenburns" },
+            "prompt": { "type": "string", "description": "Motion prompt for Wan 2.2" },
+            "kenburns": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "zoom_from": { "type": "number", "minimum": 1, "maximum": 2 },
+                "zoom_to": { "type": "number", "minimum": 1, "maximum": 2 },
+                "x_from": { "$ref": "#/$defs/unit" },
+                "x_to": { "$ref": "#/$defs/unit" },
+                "y_from": { "$ref": "#/$defs/unit" },
+                "y_to": { "$ref": "#/$defs/unit" }
+              }
+            }
+          }
+        },
+        "narration": {
+          "type": "object",
+          "required": ["text", "english"],
+          "additionalProperties": false,
+          "properties": {
+            "text": { "type": "string", "description": "Line in the narration language (spoken)" },
+            "english": { "type": "string", "description": "English subtitle text" },
+            "offset": { "type": "number", "minimum": 0, "description": "Seconds after shot start before the line begins" },
+            "machine_translated": { "type": "boolean", "description": "True until a fluent speaker has reviewed the line" }
+          }
+        },
+        "music_cue": { "type": "string", "description": "What the score should do here (used in the ACE-Step prompt notes and for the edit)" },
+        "focus": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Where to centre the crop when cutting the square master to 16:9 and 9:16",
+          "properties": {
+            "x": { "$ref": "#/$defs/unit" },
+            "y": { "$ref": "#/$defs/unit" }
+          }
+        }
+      }
+    }
+  }
+}

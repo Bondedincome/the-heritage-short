@@ -1,0 +1,6 @@
+{
+  "_note": "List-price equivalents for COSTS.md. Fill these from each provider's public pricing page and record the date you checked. Supported keys: per_call, per_gpu_hour, per_1k_chars, per_audio_second. Models with no entry show n/a.",
+  "_checked_on": null,
+  "Wan-AI/Wan2.2-TI2V-5B-Diffusers": { "per_gpu_hour": null, "_basis": "on-demand T4 price from a cloud GPU provider" },
+  "@cf/black-forest-labs/flux-1-schnell": { "per_call": null, "_basis": "Workers AI neuron price x neurons per image" }
+}
